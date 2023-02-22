@@ -1,27 +1,27 @@
-// Next UI
-import { Button } from '@nextui-org/react';
 // Layouts
+import {pokeApi} from '@/api';
 import { MainLayout } from '@/layouts';
 
 export default function Home( props ) {
-  console.log({ props });
 
   return (
     <MainLayout title='Listado de Pokemons'>
-      <Button
-        color='gradient'
-      >
-        { props.name }
-      </Button>
+      <ul>
+        <li>Pokemon</li>
+        <li>Pokemon</li>
+        <li>Pokemon</li>
+        <li>Pokemon</li>
+        <li>Pokemon</li>
+      </ul>
     </MainLayout>
   );
 }
 
 export const getStaticProps = async (ctx) => {
-  console.log( 'Hola' );
+  const { data } = await pokeApi.get('/pokemon?limit=151')
   return {
     props: {
-      name: 'Camilo'
+      pokemons: data.results
     }
   }
 }
