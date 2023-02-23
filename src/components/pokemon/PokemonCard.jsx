@@ -5,8 +5,15 @@ import {
   Row,
   Text
 } from '@nextui-org/react';
+import {useRouter} from 'next/router';
 
 export const PokemonCard = ({ pokemon }) => {
+  const router = useRouter();
+
+  const onPokemonClick = () => {
+    router.push(`/pokemon/${ pokemon.id }`);
+  }
+
   return (
     <Grid
       xs={ 6 }
@@ -14,7 +21,11 @@ export const PokemonCard = ({ pokemon }) => {
       md={ 2 }
       xl={ 1 }
     >
-      <Card isHoverable isPressable>
+      <Card
+        onClick={ onPokemonClick }
+        isHoverable
+        isPressable
+      >
         <Card.Body css={{ p: 1 }}>
           <Card.Image
             src={ pokemon.img }
