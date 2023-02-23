@@ -1,13 +1,13 @@
 // Next UI
 import { Grid } from '@nextui-org/react';
-// Layouts
-import { MainLayout } from '@/layouts';
 // API
 import {pokeApi} from '@/api';
+// Layouts
+import { MainLayout } from '@/layouts';
+// Components
 import {PokemonCard} from '@/components/pokemon';
 
 export default function Home({ pokemons }) {
-  console.log( pokemons );
   return (
     <MainLayout title='Listado de Pokemons'>
       <Grid.Container gap={ 2 } justify='flex-start'>
