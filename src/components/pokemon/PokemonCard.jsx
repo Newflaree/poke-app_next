@@ -1,3 +1,5 @@
+// Next.js
+import { useRouter } from 'next/router';
 // Next UI
 import {
   Card,
@@ -5,7 +7,6 @@ import {
   Row,
   Text
 } from '@nextui-org/react';
-import {useRouter} from 'next/router';
 
 export const PokemonCard = ({ pokemon }) => {
   const router = useRouter();

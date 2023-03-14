@@ -1,37 +1,43 @@
+// Router
 import { useRouter } from 'next/router';
+// Layouts
 import { MainLayout } from '@/layouts';
+import {pokeApi} from '@/api';
 
-export const PokemonPage = ({ id, name }) => {
-  const router = useRouter();
-  console.log(router.query);
+/* =====================
+ *        Client
+ * =====================*/
+export const PokemonPage = ({ pokemon }) => {
+  console.log( pokemon );
 
   return (
     <MainLayout>
-      <h1>{ id } - { name }</h1>
+      <h1>{ pokemon.name }</h1>
     </MainLayout>
   );
 }
 
+/* =====================
+ *        Server
+ * =====================*/
 export const getStaticPaths = async () => {
+  const poke151 = [ ...Array(151) ].map( ( value, index ) => `${ index + 1 }`);
+
   return {
-    paths: [
-      {
-        params: {
-          id: '1'
-        }
-      }
-    ],
-    fallback: true
+    paths: poke151.map( id => ({
+      params: { id }
+    })),
+    fallback: 'blocking'
   }
 }
 
-export const getStaticProps = async (ctx) => {
-  //const { data } = await pokeApi.get('/pokemon?limit=151')
+export const getStaticProps = async ({ params }) => {
+  const { id } = params;
+  const { data } = await pokeApi.get( `/pokemon/${ id }` )
 
   return {
     props: {
-      id: 1,
-      name: 'bullbasaur'
+      pokemon: data
     }
   }
 }
