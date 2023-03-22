@@ -15,7 +15,7 @@ import { MainLayout } from '@/layouts';
 /* =====================
  *        Client
  * =====================*/
-export const PokemonPage = ({ pokemon }) => {
+const PokemonPage = ({ pokemon }) => {
   console.log( pokemon );
 
   return (
