@@ -33,8 +33,8 @@ import {
         href='/'
         passHref
       >
-        <Text color='white' h3>
-          Pokemon
+        <Text color='white' h3 transform='capitalize'>
+          pokemon
         </Text>
       </NextLink>
 

@@ -11,15 +11,22 @@ import {
 import { pokeApi } from '@/api';
 // Layouts
 import { MainLayout } from '@/layouts';
+// Utils
+import { localFavorites } from '@/utils';
 
 /* =====================
  *        Client
  * =====================*/
 const PokemonPage = ({ pokemon }) => {
-  console.log( pokemon );
+  const onToggleFavorite = () => {
+    console.log( 'ID', pokemon.id );
+    localFavorites.toggleFavorite( pokemon.id );
+  }
 
   return (
-    <MainLayout>
+    <MainLayout
+      title={ pokemon.name }
+    >
       <Grid.Container
         css={{
           marginTop: '5px'
@@ -68,6 +75,7 @@ const PokemonPage = ({ pokemon }) => {
               <Button
                 color='gradient'
                 ghost
+                onPress={ onToggleFavorite }
               >
                 Guardar en favoritos
               </Button>
