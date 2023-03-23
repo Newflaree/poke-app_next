@@ -15,6 +15,7 @@ import { pokeApi } from '@/api';
 import { MainLayout } from '@/layouts';
 // Utils
 import { localFavorites } from '@/utils';
+import confetti from 'canvas-confetti';
 
 /* =====================
  *        Client
@@ -26,6 +27,19 @@ const PokemonPage = ({ pokemon }) => {
   const onToggleFavorite = () => {
     localFavorites.toggleFavorite( pokemon.id );
     setIsInFavorites( !isInFavorites );
+
+    if ( isInFavorites ) return;
+
+    confetti({
+      zIndex: 999,
+      particleCount: 100,
+      spread: 160,
+      angle: -100,
+      origin: {
+        x: 1,
+        y: 0
+      }
+    });
   }
 
   return (
