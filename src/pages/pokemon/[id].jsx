@@ -1,3 +1,5 @@
+// React
+import { useState } from 'react';
 // Next UI
 import {
   Button,
@@ -18,9 +20,12 @@ import { localFavorites } from '@/utils';
  *        Client
  * =====================*/
 const PokemonPage = ({ pokemon }) => {
+
+  const [ isInFavorites, setIsInFavorites ] = useState( localFavorites.existsInFavorites( pokemon.id ) );
+
   const onToggleFavorite = () => {
-    console.log( 'ID', pokemon.id );
     localFavorites.toggleFavorite( pokemon.id );
+    setIsInFavorites( !isInFavorites );
   }
 
   return (
@@ -74,10 +79,10 @@ const PokemonPage = ({ pokemon }) => {
 
               <Button
                 color='gradient'
-                ghost
+                ghost={ !isInFavorites }
                 onPress={ onToggleFavorite }
               >
-                Guardar en favoritos
+                { isInFavorites ? 'En favoritos' : 'Guardar en favoritos' }
               </Button>
             </Card.Header>
             <Card.Body>

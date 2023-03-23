@@ -44,8 +44,8 @@ import {
         href='/favorites'
         passHref
       >
-        <Text color='white'>
-          Favorito
+        <Text color='white' h5 transform='capitalize'>
+          favoritos
         </Text>
       </NextLink>
     </div>
