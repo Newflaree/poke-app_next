@@ -14,7 +14,7 @@ import { pokeApi } from '@/api';
 // Layouts
 import { MainLayout } from '@/layouts';
 // Utils
-import { localFavorites } from '@/utils';
+import { getPokemonInfo, localFavorites } from '@/utils';
 // Effects
 import confetti from 'canvas-confetti';
 
@@ -159,17 +159,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const { name } = params;
-  const { data } = await pokeApi.get( `/pokemon/${ name }` );
-
-  const pokemon = {
-    id: data.id,
-    name: data.name,
-    sprites: data.sprites
-  };
 
   return {
     props: {
-      pokemon
+      pokemon: await getPokemonInfo( name )
     }
   }
 }

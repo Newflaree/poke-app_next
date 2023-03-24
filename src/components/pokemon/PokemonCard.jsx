@@ -12,7 +12,7 @@ export const PokemonCard = ({ pokemon }) => {
   const router = useRouter();
 
   const onPokemonClick = () => {
-    router.push(`/pokemon/${ pokemon.id }`);
+    router.push(`/name/${ pokemon.name }`);
   }
 
   return (

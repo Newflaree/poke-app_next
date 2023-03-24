@@ -9,12 +9,11 @@ import {
   Image,
   Text
 } from '@nextui-org/react';
-// API
-import { pokeApi } from '@/api';
 // Layouts
 import { MainLayout } from '@/layouts';
 // Utils
-import { localFavorites } from '@/utils';
+import { getPokemonInfo, localFavorites } from '@/utils';
+// Effects
 import confetti from 'canvas-confetti';
 
 /* =====================
@@ -157,17 +156,10 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const { id } = params;
-  const { data } = await pokeApi.get( `/pokemon/${ id }` )
-
-  const pokemon = {
-    id: data.id,
-    name: data.name,
-    sprites: data.sprites
-  };
 
   return {
     props: {
-      pokemon
+      pokemon: await getPokemonInfo( id )
     }
   }
 }
