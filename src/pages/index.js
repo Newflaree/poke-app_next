@@ -1,11 +1,11 @@
 // Next UI
-import { Grid } from '@nextui-org/react';
+import { Grid, Image } from '@nextui-org/react';
 // API
 import {pokeApi} from '@/api';
 // Layouts
 import { MainLayout } from '@/layouts';
 // Components
-import {PokemonCard} from '@/components/pokemon';
+import { PokemonCard } from '@/components/pokemon';
 
 export default function Home({ pokemons }) {
   return (
