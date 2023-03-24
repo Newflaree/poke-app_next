@@ -21,7 +21,6 @@ import confetti from 'canvas-confetti';
  *        Client
  * =====================*/
 const PokemonPage = ({ pokemon }) => {
-
   const [ isInFavorites, setIsInFavorites ] = useState( localFavorites.existsInFavorites( pokemon.id ) );
 
   const onToggleFavorite = () => {
@@ -160,9 +159,15 @@ export const getStaticProps = async ({ params }) => {
   const { id } = params;
   const { data } = await pokeApi.get( `/pokemon/${ id }` )
 
+  const pokemon = {
+    id: data.id,
+    name: data.name,
+    sprites: data.sprites
+  };
+
   return {
     props: {
-      pokemon: data
+      pokemon
     }
   }
 }

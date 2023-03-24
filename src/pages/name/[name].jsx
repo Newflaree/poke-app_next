@@ -146,7 +146,7 @@ const PokemonByNamePage = ({ pokemon }) => {
  *        Server
  * =====================*/
 export const getStaticPaths = async () => {
-  const { data } = await pokeApi.get( `/pokemon?limit=151` )
+  const { data } = await pokeApi.get( `/pokemon?limit=151` );
   const pokemonNames = data.results.map( pokemon => pokemon.name );
 
   return {
@@ -159,11 +159,17 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const { name } = params;
-  const { data } = await pokeApi.get( `/pokemon/${ name }` )
+  const { data } = await pokeApi.get( `/pokemon/${ name }` );
+
+  const pokemon = {
+    id: data.id,
+    name: data.name,
+    sprites: data.sprites
+  };
 
   return {
     props: {
-      pokemon: data
+      pokemon
     }
   }
 }
